@@ -14,6 +14,16 @@
 
 
 <ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let p of pickupList" (tap)="link(p.link)">
+      <img src="{{p.thumbnail}}">
+      <h2 class="title">{{p.title}}</h2>
+      <p class="date">{{p.date}}</p>
+      <p class="ex">{{p.ex}}</p>
+    </ion-item>
+  </ion-list>
+
+  <hr />
 
   <ion-list>
     <ion-item *ngFor="let e of eventList" (tap)="link(e.url)">
