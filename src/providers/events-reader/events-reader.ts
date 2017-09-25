@@ -15,7 +15,7 @@ export class EventsReaderProvider {
   targetUrl: string = "/assets/dummy.html";
   //  targetUrl: string = "https://maidreamin.com/event/";
 
-  constructor(public http: Http, public HTTP: HTTP, private platform: Platform) {
+  constructor(public http: Http, private platform: Platform) {
     console.log("Hello EventsReaderProvider Provider");
   }
 
