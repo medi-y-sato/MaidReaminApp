@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { EventsReaderProvider } from "../../providers/events-reader/events-reader"
+import { InAppBrowser } from "@ionic-native/in-app-browser";
 
 /**
  * Generated class for the EventsPage page.
@@ -31,8 +32,8 @@ export class EventsPage {
       .catch(error => console.error(error))
   }
 
-  public link(url){
-    // todo : inappbrowserよぶ
+  public link(url) {
+    this.inAppBrowser.create(url);
   }
 
 }
