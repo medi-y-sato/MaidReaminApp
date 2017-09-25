@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Platform } from "ionic-angular";
 import { Http } from "@angular/http";
-import { HTTP } from "@ionic-native/http";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/toPromise";
 
