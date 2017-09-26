@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams, Platform } from "ionic-angular";
 
 import { InAppBrowser } from "@ionic-native/in-app-browser";
+import { BrowserTab } from "@ionic-native/browser-tab";
 
 import { EventsReaderProvider } from "../../providers/events-reader/events-reader";
 
@@ -21,7 +22,7 @@ export class EventsPage {
   eventList;
   pickupList;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private eventsReaderProvider: EventsReaderProvider, private inAppBrowser: InAppBrowser, private platform: Platform) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, private eventsReaderProvider: EventsReaderProvider, private inAppBrowser: InAppBrowser, private platform: Platform, private browserTab: BrowserTab) {}
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad EventsPage");
@@ -44,6 +45,19 @@ export class EventsPage {
   }
 
   public link(url) {
-    this.inAppBrowser.create(url);
+    console.log("url : " + url);
+    this.browserTab
+      .isAvailable()
+      .then((isAvailable: boolean) => {
+        if (isAvailable) {
+          this.browserTab.openUrl(url);
+        } else {
+          this.inAppBrowser.create(url);
+        }
+      })
+      .catch(error => {
+        this.inAppBrowser.create(url);
+        console.error(error);
+      });
   }
 }
