@@ -44,7 +44,7 @@ export class EventsReaderProvider {
 
           for (let i = 0; i < eventsListHtml.length; i++) {
             const eventData = {
-              link: this.baseDomainUrl +eventsListHtml.item(i).getElementsByTagName("a")[0].attributes[0].value,
+              link: this.baseDomainUrl + eventsListHtml.item(i).getElementsByTagName("a")[0].attributes[0].value,
               thumbnail: eventsListHtml
                 .item(i)
                 .getElementsByClassName("c-thumb")[0]
