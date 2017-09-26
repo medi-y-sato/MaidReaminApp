@@ -20,12 +20,10 @@ export class EventsReaderProvider {
     console.log("Hello EventsReaderProvider Provider");
   }
 
-  public getPickupList(dateString?: string) {
+  public getPickupList(dateString: string) {
     return new Promise((resolve, reject) => {
       let eventList = [];
-      if (!dateString) {
-        dateString = "2017/09";
-      }
+      console.log("dateString : " + dateString);
       this.getHtml(dateString)
         .then(res => {
           let resData;

@@ -21,6 +21,7 @@ import { EventsReaderProvider } from "../../providers/events-reader/events-reade
 export class EventsPage {
   eventList;
   pickupList;
+  targetDate;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private eventsReaderProvider: EventsReaderProvider, private inAppBrowser: InAppBrowser, private platform: Platform, private browserTab: BrowserTab) {}
 
@@ -28,20 +29,26 @@ export class EventsPage {
     console.log("ionViewDidLoad EventsPage");
 
     this.platform.ready().then(res => {
-      this.eventsReaderProvider
-        .getEventsList()
-        .then(res => {
-          this.eventList = res;
-        })
-        .catch(error => console.error(error));
-
-      this.eventsReaderProvider
-        .getPickupList()
-        .then(res => {
-          this.pickupList = res;
-        })
-        .catch(error => console.error(error));
+      this.targetDate = new Date().toISOString();
+      this.changeDate();
     });
+  }
+
+  public changeDate() {
+    const targetDateReplaced = this.targetDate.replace(/-/g, "/").substr(0, 7);
+    this.eventsReaderProvider
+      .getEventsList(targetDateReplaced)
+      .then(res => {
+        this.eventList = res;
+      })
+      .catch(error => console.error(error));
+
+    this.eventsReaderProvider
+      .getPickupList(targetDateReplaced)
+      .then(res => {
+        this.pickupList = res;
+      })
+      .catch(error => console.error(error));
   }
 
   public link(url) {

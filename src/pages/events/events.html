@@ -13,7 +13,9 @@
 </ion-header>
 
 
+
 <ion-content padding>
+
   <ion-list>
     <ion-item *ngFor="let p of pickupList" (tap)="link(p.link)">
       <img src="{{p.thumbnail}}">
@@ -25,6 +27,11 @@
   </ion-list>
 
   <hr />
+
+  <ion-item>
+    <ion-label>イベント実施年月</ion-label>
+    <ion-datetime displayFormat="YYYY/MM" pickerFormat="YYYYMM" (ionChange)="changeDate()" [(ngModel)]="targetDate"></ion-datetime>
+  </ion-item>
 
   <ion-list>
     <ion-item *ngFor="let e of eventList" (tap)="link(e.url)">
